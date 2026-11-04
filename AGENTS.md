@@ -10,6 +10,7 @@ Convert raw meeting notes (_notula_) written in Bahasa Indonesia from `.txt` fil
 root/
 ├── AGENTS.md
 ├── notula.dotx
+├── sample.docx           <- reference example of a finished document (read-only)
 ├── processed.json        <- conversion log (the only file besides docs/ output that the agent may write)
 ├── raw/
 │   ├── meeting1.txt
@@ -23,20 +24,41 @@ root/
 ## Instructions
 
 1. Read `processed.json` in the root folder (see "Conversion Log" below). If it does not exist, treat it as an empty log.
-2. List all `.txt` files inside the `raw/` folder.
-3. For each file, run the "Skip Check" below. Only files that pass it are converted.
-4. Convert each remaining `.txt` file into a separate `.docx` document.
-5. Use `notula.dotx` as the template for every generated document.
-6. Extract the meeting date from the contents of each text file.
-7. Keep the output in Bahasa Indonesia.
-8. Correct obvious spelling, punctuation, capitalization, and grammatical errors where appropriate.
-9. Organize the notes into appropriate paragraphs, headings, lists, and numbered items.
-10. Maintain a formal and professional meeting-minutes style (_notula rapat_).
-11. Preserve the original meaning and all important information.
-12. Do not invent information, decisions, participants, dates, or other details.
-13. If information is unclear or incomplete, preserve the available information rather than making assumptions.
-14. Save each generated document inside the `docs/` folder.
-15. After each successful conversion, immediately update `processed.json` (see below).
+2. Study `sample.docx` once before converting anything (see "Reference Sample" below).
+3. List all `.txt` files inside the `raw/` folder.
+4. For each file, run the "Skip Check" below. Only files that pass it are converted.
+5. Convert each remaining `.txt` file into a separate `.docx` document.
+6. Use `notula.dotx` as the template for every generated document.
+7. Extract the meeting date from the contents of each text file.
+8. Keep the output in Bahasa Indonesia.
+9. Correct obvious spelling, punctuation, capitalization, and grammatical errors where appropriate.
+10. Organize the notes into appropriate paragraphs, headings, lists, and numbered items, following the conventions seen in `sample.docx`.
+11. Maintain a formal and professional meeting-minutes style (_notula rapat_).
+12. Preserve the original meaning and all important information.
+13. Do not invent information, decisions, participants, dates, or other details.
+14. If information is unclear or incomplete, preserve the available information rather than making assumptions.
+15. Save each generated document inside the `docs/` folder.
+16. After each successful conversion, immediately update `processed.json` (see below).
+
+## Reference Sample (`sample.docx`)
+
+`sample.docx` sits next to `notula.dotx` and is an example of a finished, correctly written document. Use it to learn how the final result should look and read.
+
+Learn from it:
+
+- Document structure: which sections appear and in what order (title, meeting info, attendees, agenda, discussion, decisions, action items, closing, and so on, as the sample shows).
+- Which template styles are applied to which kinds of content (titles, headings, body text, lists, tables).
+- Writing conventions: tone, sentence style, how dates, names, and action items are phrased, and how lists and numbering are used.
+- How raw note fragments are turned into formal minutes.
+
+Do not:
+
+- Copy any content from the sample (names, dates, topics, decisions, participants). Every fact in a generated document must come from its own `.txt` file.
+- Add a section that the sample has but the `.txt` file gives no information for. Omit it or leave it as the template defines, rather than inventing content.
+- Let the sample override `notula.dotx`. The template defines styles, layout, headers, and footers. If the sample and the template conflict on formatting, follow the template. If they conflict on structure or wording conventions, follow the sample.
+- Treat `sample.docx` as a source file to convert or log in `processed.json`.
+
+If `sample.docx` is missing or cannot be opened, continue using `notula.dotx` and the rules in this file alone, and mention it in the completion report.
 
 ## Conversion Log (`processed.json`)
 
@@ -124,6 +146,7 @@ Additional rules:
 
 - Never modify or overwrite the original `.txt` files.
 - Never modify `notula.dotx`.
+- Never modify or delete `sample.docx`.
 - Do not delete existing files in `docs/`.
 - Never overwrite existing `.docx` files without explicit permission.
 - Never convert a file that the Skip Check says to skip.
@@ -145,5 +168,6 @@ After processing, provide a concise summary containing:
 - Files that could not be processed and the reasons.
 - Any missing or ambiguous meeting dates.
 - Any filename conflicts.
+- Whether `sample.docx` was found and used; if not, say so.
 
 All generated documents must be saved in the `docs/` folder.
